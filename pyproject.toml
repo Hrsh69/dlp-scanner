@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dlp-scanner"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12",
+    "rich>=13",
+    "pydantic>=2",
+    "ruamel.yaml>=0.18",
+]
+
+[project.optional-dependencies]
+docs = ["pymupdf", "python-docx", "openpyxl"]
+network = ["dpkt"]
+dev = ["pytest", "ruff", "mypy"]
+
+[project.scripts]
+dlp-scan = "dlp_scanner.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dlp_scanner"]
